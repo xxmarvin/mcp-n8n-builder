@@ -52,6 +52,24 @@ Add this to your Cline MCP settings:
 }
 ```
 
+### macOS Configuration
+
+For macOS environments, add this to your Claude Desktop configuration:
+
+```json
+{
+	"mcpServers": {
+		"n8n-workflow-builder": {
+			"command": "bash",
+			"args": [
+				"-c",
+				"N8N_HOST=http://localhost:5678/api/v1 N8N_API_KEY=your-n8n-api-key OUTPUT_VERBOSITY=concise npx -y mcp-n8n-builder"
+			]
+		}
+	}
+}
+```
+
 ### Claude Desktop with WSL Configuration
 
 For WSL environments, add this to your Claude Desktop configuration:
@@ -133,6 +151,44 @@ The server can be configured using environment variables:
 - `n8n://workflows/{id}`: Details of a specific n8n workflow
 - `n8n://executions/{id}`: Details of a specific n8n workflow
   execution
+
+## Installation on macOS
+
+1. Make sure you have Node.js installed on your Mac:
+   ```bash
+   brew install node
+   ```
+
+2. Install the n8n-workflow-builder globally:
+   ```bash
+   npm install -g mcp-n8n-builder
+   ```
+
+3. Create a configuration file for Claude Desktop App:
+   Create a file named `config.json` with the following content:
+   ```json
+   {
+     "mcpServers": {
+       "n8n-workflow-builder": {
+         "command": "bash",
+         "args": [
+           "-c",
+           "N8N_HOST=http://localhost:5678/api/v1 N8N_API_KEY=your-n8n-api-key OUTPUT_VERBOSITY=concise npx -y mcp-n8n-builder"
+         ]
+       }
+     }
+   }
+   ```
+
+4. Update the configuration in Claude Desktop App:
+   - Open Claude Desktop App
+   - Go to Settings
+   - Navigate to "Advanced"
+   - Upload or paste the configuration JSON
+
+5. Test the configuration:
+   - Start a new chat in Claude
+   - Try using the n8n-workflow-builder MCP server commands
 
 ## Development
 
